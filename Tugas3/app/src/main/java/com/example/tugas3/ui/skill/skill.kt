@@ -1,4 +1,4 @@
-package com.example.tugas3
+package com.example.tugas3.ui.skill
 
 data class Skill(
     val name:String,

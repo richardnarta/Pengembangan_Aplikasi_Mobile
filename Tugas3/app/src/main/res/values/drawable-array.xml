@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="logo">
+        <item>@drawable/python</item>
+        <item>@drawable/cplusplus</item>
+        <item>@drawable/js</item>
+        <item>@drawable/kotlin</item>
+        <item>@drawable/ruby</item>
+        <item>@drawable/java</item>
+        <item>@drawable/swift</item>
+        <item>@drawable/csharp</item>
+        <item>@drawable/ts</item>
+        <item>@drawable/php</item>
+    </integer-array>
+</resources>

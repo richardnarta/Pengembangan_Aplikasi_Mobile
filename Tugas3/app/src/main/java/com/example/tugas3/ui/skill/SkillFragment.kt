@@ -8,17 +8,14 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tugas3.Constants
-import com.example.tugas3.Skill
+import com.example.tugas3.ui.utilities.Constants
 import com.example.tugas3.databinding.FragmentSkillBinding
-import com.example.tugas3.Adapter
 
 class SkillFragment : Fragment() {
-
     private var _binding: FragmentSkillBinding?=null
     private val binding get() = _binding!!
 
-    private var itemAdapter:Adapter = Adapter(Constants.getSkillData())
+    private lateinit var itemAdapter: Adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +24,24 @@ class SkillFragment : Fragment() {
         _binding = FragmentSkillBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        itemAdapter = Adapter(Constants.getSkillData(this), this)
+
+        createRecycleView()
+
+        defineSearchView()
+
+        defineOnClickListener()
+
+        return root
+    }
+
+    private fun createRecycleView(){
         val recyclerView = binding.recycleView
         recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = itemAdapter
+    }
 
+    private fun defineSearchView(){
         val searchView = binding.search
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -37,36 +49,19 @@ class SkillFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                filter(newText)
+                itemAdapter.filter(newText)
                 return false
             }
         })
+    }
 
-        recyclerView.adapter = itemAdapter
-
+    private fun defineOnClickListener(){
         itemAdapter.setOnClickListener(object :
             Adapter.OnClickListener{
             override fun onClick(position: Int, model: Skill) {
                 findNavController().navigate(SkillFragmentDirections.actionNavSkillToNavInfo(model.name))
             }
         })
-        return root
-    }
-
-    fun filter(text: String){
-        val filteredList = ArrayList<Skill>()
-        val emptyList = ArrayList<Skill>()
-
-        for (item in Constants.getSkillData()){
-            if (item.name.contains(text, ignoreCase = true)){
-                filteredList.add(item)
-            }
-        }
-        if (filteredList.isNotEmpty()){
-            itemAdapter.filterList(filteredList)
-        }else{
-            itemAdapter.filterList(emptyList)
-        }
     }
 
     override fun onDestroyView() {
