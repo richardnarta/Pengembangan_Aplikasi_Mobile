@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_login">
+
+    <fragment
+        android:id="@+id/nav_splash"
+        android:name="com.example.tugas5.splash_screen.SplashFragment"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_nav_splash_to_nav_login"
+            app:destination="@id/nav_login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.example.tugas5.login.LoginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_nav_login_to_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/nav_login"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_nav_login_to_nav_registration"
+            app:destination="@id/nav_registration" />
+        <action
+            android:id="@+id/action_nav_login_to_nav_splash"
+            app:destination="@id/nav_splash"
+            app:popUpTo="@id/nav_login"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.tugas5.home.HomeFragment"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_login2"
+            app:destination="@id/nav_login"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="username"
+            app:argType="string"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_registration"
+        android:name="com.example.tugas5.registration.RegistrationFragment"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_nav_registration_to_nav_login"
+            app:destination="@id/nav_login" />
+    </fragment>
+
+
+</navigation>

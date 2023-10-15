@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="kubo">
+        <item>@drawable/kubo1</item>
+        <item>@drawable/kubo2</item>
+        <item>@drawable/kubo3</item>
+    </integer-array>
+</resources>
